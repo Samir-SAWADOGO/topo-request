@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPO-REQUEST | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>TOPO-REQUEST</h2>
+    <div>
+        <a href="create-request.html">Nouvelle demande</a>
+        <a href="requests.html">Demandes</a>
+        <button class="logout" onclick="logout()">Déconnexion</button>
+    </div>
+</div>
+
+<h3>Tableau de Bord</h3>
+
+<div class="dashboard-grid">
+    <div class="card">
+        <h4>Demandes ouvertes</h4>
+        <p id="openCount">0</p>
+    </div>
+
+    <div class="card">
+        <h4>Urgentes</h4>
+        <p id="urgentCount">0</p>
+    </div>
+
+    <div class="card">
+        <h4>En cours</h4>
+        <p id="progressCount">0</p>
+    </div>
+
+    <div class="card">
+        <h4>Terminées</h4>
+        <p id="doneCount">0</p>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
