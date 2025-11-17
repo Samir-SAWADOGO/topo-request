@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPO-REQUEST | Nouvelle Demande</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>TOPO-REQUEST</h2>
+    <div>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="requests.html">Demandes</a>
+        <button class="logout" onclick="logout()">Déconnexion</button>
+    </div>
+</div>
+
+<h3>Créer une Demande</h3>
+
+<div class="form-container">
+    <input id="demandeur" type="text" placeholder="Nom du demandeur">
+    <input id="departement" type="text" placeholder="Département (Ops, Geo, Exp)">
+    <input id="zone" type="text" placeholder="Zone (Nord, Sud, Pit A...)">
+    <input id="type" type="text" placeholder="Type de travail (Drop, Ramp, Grade Control...)">
+
+    <textarea id="description" placeholder="Description détaillée"></textarea>
+
+    <input id="deadline" type="date">
+
+    <select id="urgence">
+        <option value="normal">Normal</option>
+        <option value="urgent">Urgent</option>
+        <option value="critique">Critique</option>
+    </select>
+
+    <button onclick="sendRequest()">Envoyer la demande</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
