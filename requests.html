@@ -3,26 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOPO-REQUEST | Demandes</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Liste des demandes</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="navbar">
-    <h2>TOPO-REQUEST</h2>
-    <div>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="create-request.html">Nouvelle demande</a>
-        <button class="logout" onclick="logout()">Déconnexion</button>
-    </div>
+<header>
+    <h2>Liste des demandes</h2>
+</header>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Statut</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="requestsTable"></tbody>
+    </table>
 </div>
 
-<h3>Liste des Demandes</h3>
+<!-- Firebase -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-<div class="requests-list" id="requestsList">
-    <!-- Les demandes apparaissent ici -->
-</div>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAwUmtyE4JX7ZpGj9gWRtIrMtwuYJ6D0J0",
+        authDomain: "topo-request.firebaseapp.com",
+        projectId: "topo-request",
+        storageBucket: "topo-request.appspot.com",
+        messagingSenderId: "135750936595",
+        appId: "1:135750936595:web:138d21fd19798c0e2610b1"
+    };
 
-<script src="app.js"></script>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadRequests() {
+        const table = document.getElementById("requestsTable");
+        table.innerHTML = "";
+
+        const querySnapshot = await getDocs(collection(db, "requests"));
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${data.title}</td>
+                <td>${data.description}</td>
+                <td>${data.status}</td>
+                <td>${data.createdAt.toDate().toLocaleString()}</td>
+            `;
+            table.appendChild(tr);
+        });
+    }
+
+    loadRequests();
+</script>
+
 </body>
 </html>
